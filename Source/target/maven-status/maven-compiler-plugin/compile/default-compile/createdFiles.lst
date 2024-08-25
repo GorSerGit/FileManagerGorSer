@@ -1,0 +1,6 @@
+com\example\mymicroservice\MyMicroserviceApplication.class
+com\example\mymicroservice\SQL\PostgreSQLExample.class
+com\example\mymicroservice\model\MyResponse.class
+com\example\mymicroservice\model\MyRequest.class
+com\example\mymicroservice\controller\MyController$1.class
+com\example\mymicroservice\controller\MyController.class
