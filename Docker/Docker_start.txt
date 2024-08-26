@@ -1,0 +1,29 @@
+Запуск докер 
+
+ГитХаб не позволяет хранить большие файлы, поэтому архив с Docker образом размещен на Google диске : https://drive.google.com/drive/folders/1R5TSXFd3ZmBgA1P29r1XawffUOAJbjen?usp=sharing
+
+Убедитесь что у вас установлен Docker 
+
+"   docker --version  "
+
+Создайте общую сеть для контейнеров или используйте существующую 
+
+"   docker network create mynetwork  "
+
+Запустите сервер базы данных postgreSQL. Имя экземпляра обязательно должно быть MyPostgreSQL , т.к. именно на это имя ссылается микросервис. Главный пользователь должен иметь имя GorSer и пароль 123456
+(Пример команды ниже)
+
+"  docker run --name MyPostgreSQL -e POSTGRES_USER=GorSer -e POSTGRES_PASSWORD=123456 -e POSTGRES_DB=Files -p 5432:5432 -d --network mynetwork postgres  "
+
+Скачайте из архива Docker образ микросервиса и запустите его в той же сети что и сервер базы данных
+(Пример команды ниже)
+
+"   docker load -i my_service.tar  "  Загружаем Docker образ
+"   docker images  "  Проверяем что он загружен
+"   docker run -d -p 8080:8080 --name MyService --network mynetwork microservice" Запускаем в той же сети что и сервер PostgreSQL
+
+Проверьте запущенные образы с помощью команды
+
+"  docker ps "
+
+Все! Готово, можем переходить к работе. Пример взаимодействия с базой данных приведен в папке Test
